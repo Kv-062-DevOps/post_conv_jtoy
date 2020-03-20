@@ -6,14 +6,14 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 
+	//"github.com/gorilla/mux"
 	"github.com/gorilla/mux"
 	"gopkg.in/yaml.v2"
+	//"gopkg.in/yaml.v2"
 )
 
 type Item struct {
@@ -28,42 +28,16 @@ type Item struct {
 func main() {
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":8083", router))
-	log.Println(router)
-	fmt.Println(router)
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
-	team := Team{
-		Employee{Name: "Vasya", Age: 25},
-		Employee{Name: "Petya", Age: 30},
-	}
-	if err := yaml.NewEncoder(w).Encode(team); err != nil {
+	var item Item
+	if err := yaml.NewDecoder(r.Body).Decode(&item); err != nil {
 		panic(err)
 	}
-}
-
-func HelloHandler(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	lastname := vars["lastname"]
-	var emp Employee
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		panic(err)
-	}
-	if err := json.Unmarshal(body, &emp); err != nil {
-		w.WriteHeader(400)
-	}
-
+	fmt.Println(item)
 	w.WriteHeader(200)
-	fmt.Fprintln(w, "your name is:", emp.Name, lastname)
 }
-
-type Employee struct {
-	Name string `json:"name"`
-	Age  uint8  `json:"employee_age"`
-}
-
-type Team []Employee
 
 type Route struct {
 	Name        string
@@ -86,11 +60,5 @@ var routesArray = []Route{
 		Method:      "POST",
 		Pattern:     "/",
 		HandlerFunc: RootHandler,
-	},
-	Route{
-		Name:        "Hello",
-		Method:      "POST",
-		Pattern:     "/hello/{lastname}",
-		HandlerFunc: HelloHandler,
 	},
 }

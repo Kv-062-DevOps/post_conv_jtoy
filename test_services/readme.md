@@ -20,10 +20,16 @@ Service 3. Additional, get YAML.
 ________
 
 * Database structure:
+
 emp_id
+
 first_name
+
 second_name
+
 types
+
 experience
+
 default_salary
 ________

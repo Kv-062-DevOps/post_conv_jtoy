@@ -9,6 +9,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -28,13 +29,13 @@ func main() {
 
 func MakeRequest() {
 
-	message := map[string]interface{}{
-		"Emp_ID":         1,
-		"First_Name":     "Pablo",
-		"Second_Name":    "Picasso",
-		"Types":          "designer",
-		"Experience":     5,
-		"Default_Salary": 2000,
+	message := Item{
+		Emp_ID:         1,
+		First_Name:     "Pablo",
+		Second_Name:    "Picasso",
+		Types:          "designer",
+		Experience:     5,
+		Default_Salary: 2000,
 	}
 
 	bytesRepresentation, err := json.Marshal(message)
@@ -47,10 +48,6 @@ func MakeRequest() {
 		log.Fatalln(err)
 	}
 
-	var result map[string]interface{}
-
-	json.NewDecoder(resp.Body).Decode(&result)
-
-	log.Println(result)
-	log.Println(result["data"])
+	body, err := ioutil.ReadAll(resp.Body)
+	log.Println(string(body))
 }
