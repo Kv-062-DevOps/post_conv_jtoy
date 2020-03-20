@@ -10,10 +10,8 @@ import (
 	"log"
 	"net/http"
 
-	//"github.com/gorilla/mux"
 	"github.com/gorilla/mux"
-	"gopkg.in/yaml.v2"
-	//"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 type Item struct {

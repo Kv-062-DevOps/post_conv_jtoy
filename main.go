@@ -15,7 +15,6 @@ import (
 	"net/http"
 
 	"github.com/ghodss/yaml"
-	//"github.com/ghodss/yaml"
 )
 
 func main() {
