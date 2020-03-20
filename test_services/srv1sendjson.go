@@ -12,8 +12,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 )
 
+/*
 type Item struct {
 	Emp_ID         uint   `json:"emp_id"`
 	First_Name     string `json:"first_name"`
@@ -22,6 +25,7 @@ type Item struct {
 	Experience     uint   `json:"experience"`
 	Default_Salary int32  `json:"default_salary"`
 }
+*/
 
 func main() {
 	MakeRequest()
@@ -29,13 +33,13 @@ func main() {
 
 func MakeRequest() {
 
-	message := Item{
-		Emp_ID:         1,
-		First_Name:     "Pablo",
-		Second_Name:    "Picasso",
-		Types:          "designer",
-		Experience:     5,
-		Default_Salary: 2000,
+	message := handlers.Employ{
+		E_Id:       "  1",
+		F_Name:     "Pablo",
+		S_Name:     "Picasso",
+		Type:       "designer",
+		Exper:      "5",
+		Def_Salary: "2000",
 	}
 
 	bytesRepresentation, err := json.Marshal(message)

@@ -12,16 +12,18 @@ import (
 
 	"github.com/gorilla/mux"
 	"gopkg.in/yaml.v3"
+
+	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 )
 
-type Item struct {
+/* type Item struct {
 	Emp_ID         uint   `yaml:"emp_id"`
 	First_Name     string `yaml:"first_name"`
 	Second_Name    string `yaml:"second_name"`
 	Types          string `yaml:"types"` //developer, designer, manager
 	Default_Salary int    `yaml:"default_salary"`
 	Experience     uint   `yaml:"experience"`
-}
+} */
 
 func main() {
 	router := NewRouter()
@@ -29,7 +31,7 @@ func main() {
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
-	var item Item
+	var item handlers.Employ
 	if err := yaml.NewDecoder(r.Body).Decode(&item); err != nil {
 		panic(err)
 	}

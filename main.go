@@ -30,11 +30,12 @@ func main() {
 		if err != nil {
 			log.Fatalln(err)
 		}
-		fmt.Println(resp.Status)
 
-		fmt.Fprintf(w, resp.Status)
+		fmt.Println(resp.Status)
+		//fmt.Fprintf(w, resp.Status)
 
 	})
+
 	http.ListenAndServe(":8082", nil)
 
 }
