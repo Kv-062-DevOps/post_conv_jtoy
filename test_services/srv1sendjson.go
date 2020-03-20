@@ -9,23 +9,13 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 
 	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 )
-
-/*
-type Item struct {
-	Emp_ID         uint   `json:"emp_id"`
-	First_Name     string `json:"first_name"`
-	Second_Name    string `json:"second_name"`
-	Types          string `json:"types"` //developer, designer, manager
-	Experience     uint   `json:"experience"`
-	Default_Salary int32  `json:"default_salary"`
-}
-*/
 
 func main() {
 	MakeRequest()
@@ -41,6 +31,8 @@ func MakeRequest() {
 		Exper:      "5",
 		Def_Salary: "2000",
 	}
+
+	fmt.Println(message)
 
 	bytesRepresentation, err := json.Marshal(message)
 	if err != nil {

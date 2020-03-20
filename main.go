@@ -24,9 +24,13 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		y1, err := yaml.JSONToYAML(body)
+		fmt.Println(body)
 
-		resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(y1))
+		converted, err := yaml.JSONToYAML(body)
+
+		fmt.Println(converted)
+
+		resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			log.Fatalln(err)
 		}

@@ -16,26 +16,17 @@ import (
 	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 )
 
-/* type Item struct {
-	Emp_ID         uint   `yaml:"emp_id"`
-	First_Name     string `yaml:"first_name"`
-	Second_Name    string `yaml:"second_name"`
-	Types          string `yaml:"types"` //developer, designer, manager
-	Default_Salary int    `yaml:"default_salary"`
-	Experience     uint   `yaml:"experience"`
-} */
-
 func main() {
 	router := NewRouter()
 	log.Fatal(http.ListenAndServe(":8083", router))
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
-	var item handlers.Employ
-	if err := yaml.NewDecoder(r.Body).Decode(&item); err != nil {
+	var message handlers.Employ
+	if err := yaml.NewDecoder(r.Body).Decode(&message); err != nil {
 		panic(err)
 	}
-	fmt.Println(item)
+	fmt.Println(message)
 	w.WriteHeader(200)
 }
 
