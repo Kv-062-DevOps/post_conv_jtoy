@@ -10,10 +10,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 	"github.com/gorilla/mux"
 	"gopkg.in/yaml.v3"
-
-	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
 )
 
 func main() {

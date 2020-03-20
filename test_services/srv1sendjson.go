@@ -24,7 +24,7 @@ func main() {
 func MakeRequest() {
 
 	message := handlers.Employ{
-		E_Id:       "  1",
+		E_Id:       "1",
 		F_Name:     "Pablo",
 		S_Name:     "Picasso",
 		Type:       "designer",
@@ -45,5 +45,8 @@ func MakeRequest() {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	log.Println(string(body))
 }

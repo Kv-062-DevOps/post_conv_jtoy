@@ -24,9 +24,14 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		fmt.Println(body)
+
+		//jsondata := json.Unmarshal(body)
+		//fmt.Println(jsondata)
 
 		converted, err := yaml.JSONToYAML(body)
+		if err != nil {
+			log.Fatalln(err)
+		}
 
 		fmt.Println(converted)
 
