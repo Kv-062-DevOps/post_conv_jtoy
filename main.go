@@ -36,7 +36,7 @@ func main() {
 		//fmt.Println(converted)
 
 		//resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(converted))
-		resp, err := http.Post("http://127.0.0.1:5000", "application/yaml", bytes.NewBuffer(converted))
+		resp, err := http.Post("http://127.0.0.1:5000/add", "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			log.Fatalln(err)
 		}
