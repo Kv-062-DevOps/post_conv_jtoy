@@ -1,9 +1,9 @@
-//SERVICE. ENCODING JSON->YAML.
-//1. Listen incoming traffic on port http :8082
-//2. Decode structure from JSON into map.
-//3. Print mapped data on the screen.
-//4. Encode data map into YAML.
-//5. Send YAML to service 3 on port http :8083
+//MAIN SERVICE. ENCODING JSON->YAML.
+//1. Listen incoming requests on port http :8082
+//2. Decode body from JSON.
+//3. Encode data into YAML.
+//4. Print structure on the screen.
+//5. Send YAML to service 3 on port http :8083 path /add
 
 package main
 
@@ -25,24 +25,19 @@ func main() {
 			panic(err)
 		}
 
-		//jsondata := json.MarshalIndent(body, "", "    ")
-		//fmt.Println(json.UnMarshalIndent(body, "", "    "))
-
 		converted, err := yaml.JSONToYAML(body)
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		//fmt.Println(converted)
-
-		//resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(converted))
 		resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			log.Fatalln(err)
 		}
 
 		fmt.Println(resp.Status)
-		//fmt.Fprintf(w, resp.Status)
+		fmt.Fprintf(w, resp.Status)
+		fmt.Println(bytes.NewBuffer(converted))
 
 	})
 

@@ -1,7 +1,7 @@
-//Service 3. Additional, get YAML.
-//1. Listen incoming traffic on port http :8083
-//2. Decode structure from YAML into map.
-//3. Print mapped data on the screen.
+//Service 3. Additional for test, get YAML (such as Python DB module works).
+//1. Listen requests on port http :8083 path /add
+//2. Decode body from YAML.
+//3. Print structure on the screen.
 
 package main
 
@@ -50,7 +50,7 @@ var routesArray = []Route{
 	Route{
 		Name:        "Root",
 		Method:      "POST",
-		Pattern:     "/",
+		Pattern:     "/add",
 		HandlerFunc: RootHandler,
 	},
 }
