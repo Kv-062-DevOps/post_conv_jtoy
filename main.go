@@ -1,9 +1,9 @@
-//MAIN SERVICE. ENCODING JSON->YAML.
-//1. Listen incoming requests on port http :8082
+//POST Data Converting Service JSON to YAML:
+//1. Listen requests from frontend on port http :8082
 //2. Decode body from JSON.
 //3. Encode data into YAML.
 //4. Print structure on the screen.
-//5. Send YAML to service 3 on port http :8083 path /add
+//5. Send YAML to DB service on port http :8083 path /add.
 
 package main
 

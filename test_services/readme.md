@@ -1,35 +1,36 @@
-Service 1. Additional, send JSON.
-1. Create data string.
+Two additional service for testing POST data converting service without Frontend and Database.
+___
+
+Additional service for test sending JSON (such as Python Frontend works):
+
+1. Generate data array.
 2. Print data on the screen.
-2. Encode data string into JSON.
-3. Send JSON to service 2 on port http :8082
-_____________
+3. Encode data array into JSON.
+4. Send JSON to MAIN service on port http :8082
+___
 
-Service 2. MAIN SERVICE (NUMBER 3 FOR DEMO LAB). ENCODING JSON->YAML.
-1. Listen incoming traffic on port http :8082
-2. Decode structure from JSON.
-3. Print data on the screen.
-4. Encode data into YAML.
-5. Send YAML to service 3 on port http :8083
-_____________
+Additional service for test getting YAML (such as Python DB service works:
 
-Service 3. Additional, get YAML.
-1. Listen incoming traffic on port http :8083
-2. Decode structure from YAML.
-3. Print data on the screen.
-________
+1. Listen requests on port http :8083 path /add
+2. Decode body from YAML.
+3. Print structure on the screen.
+___
 
-* Database structure:
+To start testing:
 
-emp_id
+1. In first commandline console start Yaml listener:
+go run getyamlsrv.go
+or execute ./getyamlsrv
+2. In second commandline console start main Post converting service:
+go run main.go
+or execute ./main
+3. In third commandline console start Json sender:
+go run sendjsonsrv.go
+or execute ./sendjsonsrv
 
-first_name
+Check the output in appropriate commandline consoles:
+1. Recieved message with employee field values for DB.
+2. Responce code and employee field structure in the converter.
+3. Source message with employee information, date, time and responce code.
 
-second_name
-
-types
-
-experience
-
-default_salary
-________
+___
