@@ -1,4 +1,7 @@
-Two additional service for testing POST data converting service without Frontend and Database.
+Two additional service for:
+a) testing POST data converting service without Frontend and/or Database.
+b) testing your Frontend service to Post new employee in Json. 
+c) testing your DB service to recieve employee data in Yaml.
 ___
 
 Additional service for test sending JSON (such as Python Frontend works):
