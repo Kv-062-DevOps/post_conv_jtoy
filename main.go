@@ -25,17 +25,18 @@ func main() {
 			panic(err)
 		}
 
-		//jsondata := json.Unmarshal(body)
-		//fmt.Println(jsondata)
+		//jsondata := json.MarshalIndent(body, "", "    ")
+		//fmt.Println(json.UnMarshalIndent(body, "", "    "))
 
 		converted, err := yaml.JSONToYAML(body)
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		fmt.Println(converted)
+		//fmt.Println(converted)
 
-		resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(converted))
+		//resp, err := http.Post("http://127.0.0.1:8083", "application/yaml", bytes.NewBuffer(converted))
+		resp, err := http.Post("http://127.0.0.1:5000", "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			log.Fatalln(err)
 		}
