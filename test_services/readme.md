@@ -10,11 +10,11 @@ Service 2. MAIN SERVICE (NUMBER 3 FOR DEMO LAB). ENCODING JSON->YAML.
 2. Decode structure from JSON.
 3. Print data on the screen.
 4. Encode data into YAML.
-5. Send YAML to service 3 on port http :8083
+5. Send YAML to service 3 on port http :8083 (now changed to :5000 for test with real Flask+DB)
 _____________
 
 Service 3. Additional, get YAML.
-1. Listen incoming traffic on port http :8083
+1. Listen incoming traffic on port http :8083 (now changed to :5000)
 2. Decode structure from YAML.
 3. Print data on the screen.
 ________
