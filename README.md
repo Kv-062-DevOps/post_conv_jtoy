@@ -1,47 +1,41 @@
-# POST Data Converting Service from JSON to YAML.
-___
+# POST Data Converting Service from JSON to YAML
 
 ## How it works:
-1. Listen requests from frontend on port http :8082
+1. Listen requests from frontend on port http :8082.
 2. Decode body from JSON.
 3. Encode data into YAML.
 4. Print structure on the screen.
 5. Send YAML to DB service on port http :8083 path /add.
 
-*For testing without Frontend or/and Database, see **"test_services" folder**.*
+*For testing without Frontend or/and Database, see **"test_services"** folder.*
 
 ### To start service from source code:
 ```
 go run main.go 
-*(or execute ./main)*
 ```
+*(or execute ./main)*
 Now you can post requests from Frontend and put them into Database.
-___
 
-## Containerization:
-___
+## Containerization
 
-### It is recommended to use image from Dockerhub:
+### It is recommended to use image from DockerHub:
 ```
 docker run --network=host nigth/post_conv_jtoy
 ```
-Also you can create and use local image by the next commands:
+Also you can create and use local image:
 1) Create local Docker image:
 ```
 docker build post_conv_jtoy
 ```
-2) Wait for message:
-** Successfully built <IMAGE> **
+2) Wait for the message: 
+**Successfully built IMAGE_NAME**
 *(example: Successfully built    76db9a5645e9)*
 3) Start Docker service:
 ```
-docker run --net=host <IMAGE>
-*(example: docker run --net=host 76db9a5645e9)*
+docker run --net=host IMAGE_NAME
 ```
-___
-
+*(example: docker run --net=host 76db9a5645e9)*
 ## Additional information
-___
 
 ### Project DataBase Structure:
 - emp_id;
@@ -50,7 +44,6 @@ ___
 - types;
 - experience;
 - default_salary;
-___
 
 ### Project Ports Explication:
 + **Python frontend**: Listen on 8081 JSON from Go GET service;      Send JSON to 8082 Go POST service.
