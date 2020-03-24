@@ -1,5 +1,6 @@
-POST Data Converting Service JSON to YAML:
+POST Data Converting Service JSON to YAML.
 
+How it works:
 1. Listen requests from frontend on port http :8082
 2. Decode body from JSON.
 3. Encode data into YAML.
@@ -7,10 +8,21 @@ POST Data Converting Service JSON to YAML:
 5. Send YAML to DB service on port http :8083 path /add.
 ___
 
-To start service:
+It is recommended to use image from Dockerhub by the command:
+docker run --network=host nigth/post_conv_jtoy
 
-go run main.go
-or execute ./main
+Also you can create and use local image by the next commands:
+1) Create local Docker image:
+docker build post_conv_jtoy
+2) Wait for message:
+Successfully built <IMAGE>
+(example: Successfully built    76db9a5645e9)
+3) Start Docker service:
+docker run --net=host <IMAGE>
+(example: docker run --net=host 76db9a5645e9)
+
+To start service without container:
+go run main.go (or execute ./main)
 
 Now you can post requests from Frontend and put them into Database.
 
