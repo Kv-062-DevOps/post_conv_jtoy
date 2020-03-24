@@ -13,7 +13,8 @@
 ```
 go run main.go 
 ```
-*(or execute ./main)*
+_(or execute ./main)_
+
 Now you can post requests from Frontend and put them into Database.
 
 ## Containerization
@@ -30,7 +31,7 @@ docker build post_conv_jtoy
 2) Wait for the message: 
 **Successfully built IMAGE_NAME**
 *(example: Successfully built    76db9a5645e9)*
-3) Start Docker service:
+3) Start the Docker service:
 ```
 docker run --net=host IMAGE_NAME
 ```

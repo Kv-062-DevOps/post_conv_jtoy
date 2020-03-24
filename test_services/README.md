@@ -1,7 +1,7 @@
 # These are two additional services for:
-1. testing POST data converting service without Frontend and/or Database.
-2. testing your Frontend service to Post new employee in Json. 
-3. testing your DB service to recieve employee data in Yaml.
+1. Test POST data converting service without Frontend and/or Database.
+2. Test how your Frontend service posts new employee in Json. 
+3. Test how your DB service recieves employee data in Yaml.
 
 ### Additional service for test sending JSON (such as Python Frontend works):
 1. Generate data array.
@@ -20,17 +20,19 @@
 ```
 go run getyamlsrv.go
 ```
-**(or execute ./getyamlsrv)**
+_(or execute ./getyamlsrv)_
+
 2. In the second commandline console start main Post converting service:
 ```
 go run main.go
 ```
-**(or execute ./main)**
+_(or execute ./main)_
+
 3. In the third commandline console start Json sender:
 ```
 go run sendjsonsrv.go
 ```
-**(or execute ./sendjsonsrv)**
+_(or execute ./sendjsonsrv)_
 
 ### Check the output in appropriate commandline consoles:
 1. Recieved message with employee field values for DB.
