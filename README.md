@@ -20,6 +20,7 @@ Now you can post requests from Frontend and put them into Database.
 ## Containerization
 
 ### It is recommended to use image from DockerHub:
+https://hub.docker.com/r/nigth/post_conv_jtoy
 ```
 docker run --network=host nigth/post_conv_jtoy
 ```
