@@ -11,7 +11,6 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/ghodss/yaml"
@@ -22,17 +21,27 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			panic(err)
+			//panic(err)
+			//log.Fatalln(err)
+			http.Error(w, "400 Bad Request from Frontend", 400)
+			fmt.Println(err)
+			return
 		}
 
 		converted, err := yaml.JSONToYAML(body)
 		if err != nil {
-			log.Fatalln(err)
+			//log.Fatalln(err)
+			http.Error(w, "422 Unprocessable Entity recieved", 422)
+			fmt.Println(err)
+			return
 		}
 
 		resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
-			log.Fatalln(err)
+			//log.Fatalln(err)
+			http.Error(w, "503 Service DB Unavailable at port 8083", 503)
+			fmt.Println(err)
+			return
 		}
 
 		fmt.Println(resp.Status)

@@ -31,7 +31,8 @@ docker build post_conv_jtoy
 ```
 2) Wait for the message: 
 **Successfully built IMAGE_NAME**
-*(example: Successfully built    76db9a5645e9)*
+_(example: Successfully built    76db9a5645e9)_
+
 3) Start the Docker service:
 ```
 docker run --net=host IMAGE_NAME

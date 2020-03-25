@@ -25,8 +25,13 @@ func main() {
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	var message handlers.Employ
 	if err := yaml.NewDecoder(r.Body).Decode(&message); err != nil {
-		panic(err)
+		//panic(err)
+		//log.Fatalln(err)
+		http.Error(w, "400 Bad Request from POST converting service", 400)
+		fmt.Println(err)
+		return
 	}
+
 	fmt.Println(message)
 	w.WriteHeader(200)
 }
