@@ -36,7 +36,6 @@ func MakeRequest() {
 
 	bytesRepresentation, err := json.Marshal(message)
 	if err != nil {
-		//log.Fatalln(err)
 		fmt.Println("Error 422 Unprocessable Entity in data")
 		fmt.Println(err)
 		return
@@ -44,7 +43,6 @@ func MakeRequest() {
 
 	resp, err := http.Post("http://127.0.0.1:8082", "application/json", bytes.NewBuffer(bytesRepresentation))
 	if err != nil {
-		//log.Fatalln(err)
 		fmt.Println("Error 503 Service POST Converter Unavailable at port 8082")
 		fmt.Println(err)
 		return
@@ -52,7 +50,6 @@ func MakeRequest() {
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		//log.Fatalln(err)
 		fmt.Println("Error 400 Bad Request recieved from POST converting service")
 		fmt.Println(err)
 		return

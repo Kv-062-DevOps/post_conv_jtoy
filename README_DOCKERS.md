@@ -4,7 +4,7 @@ docker run --name="dyn" --network=host amazon/dynamodb-local
 docker run --name="init" --network=host -e Db_url="http://127.0.0.1:8000" -e Region="local" vnikolayenko/db_service:latest_db_init
 docker run --name="db" --network=host -e Db_url="http://127.0.0.1:8000" -e Server_port="8083" -e Region="local" vnikolayenko/db_service:latest_db_service
 
-docker run --name="post" --network=host nigth/post_conv_jtoy
+docker run --name="post" --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" nigth/post_conv_jtoy
 docker run --name="get" --network=host -e ENDPOINT="http://127.0.0.1:8083/list" -e HOST_PORT=":8081" nikitasadok/go-get-service
 docker run --name="front" --network=host dimeder13/frontend:latest
  

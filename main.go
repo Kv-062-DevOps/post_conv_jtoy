@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/ghodss/yaml"
 )
@@ -21,8 +22,6 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			//panic(err)
-			//log.Fatalln(err)
 			http.Error(w, "400 Bad Request from Frontend", 400)
 			fmt.Println(err)
 			return
@@ -30,16 +29,15 @@ func main() {
 
 		converted, err := yaml.JSONToYAML(body)
 		if err != nil {
-			//log.Fatalln(err)
 			http.Error(w, "422 Unprocessable Entity recieved", 422)
 			fmt.Println(err)
 			return
 		}
 
-		resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
+		//resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
+		resp, err := http.Post(os.Getenv("DB_SRV_LINK"), "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
-			//log.Fatalln(err)
-			http.Error(w, "503 Service DB Unavailable at port 8083", 503)
+			http.Error(w, "503 Service DB Unavailable at this link", 503)
 			fmt.Println(err)
 			return
 		}
@@ -50,6 +48,7 @@ func main() {
 
 	})
 
-	http.ListenAndServe(":8082", nil)
+	//http.ListenAndServe(":8082", nil)
+	http.ListenAndServe(os.Getenv("POST_SRV_PORT"), nil)
 
 }

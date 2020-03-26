@@ -10,7 +10,11 @@
 *For testing without Frontend or/and Database, see **"test_services"** folder.*
 
 ### To start service from source code:
+At first set the environment variables POST_SRV_PORT and DB_SRV_LINK , for example:
 ```
+export POST_SRV_PORT = ":8082"
+export DB_SRV_LINK = "http://127.0.0.1:8083/add"
+
 go run main.go 
 ```
 _(or execute ./main)_
@@ -22,7 +26,11 @@ Now you can post requests from Frontend and put them into Database.
 ### It is recommended to use image from DockerHub:
 https://hub.docker.com/r/nigth/post_conv_jtoy
 ```
-docker run --network=host nigth/post_conv_jtoy
+docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" nigth/post_conv_jtoy
+```
+To update your image:
+```
+docker pull nigth/post_conv_jtoy
 ```
 Also you can create and use local image:
 1) Create local Docker image:
@@ -35,9 +43,9 @@ _(example: Successfully built    76db9a5645e9)_
 
 3) Start the Docker service:
 ```
-docker run --net=host IMAGE_NAME
+docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" IMAGE_NAME
 ```
-*(example: docker run --net=host 76db9a5645e9)*
+*(example: docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" 76db9a5645e9)*
 ## Additional information
 
 ### Project DataBase Structure:
