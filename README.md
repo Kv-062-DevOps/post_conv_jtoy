@@ -13,10 +13,12 @@
 At first set the environment variables POST_SRV_PORT and DB_SRV_LINK , for example:
 ```
 POST_SRV_PORT=":8082"
-echo $POST_SRV_PORT
+export POST_SRV_PORT=":8082"
 DB_SRV_LINK="http://127.0.0.1:8083/add"
+export DB_SRV_LINK="http://127.0.0.1:8083/add"
+echo $POST_SRV_PORT
 echo $DB_SRV_LINK
-
+ 
 go run main.go 
 ```
 _(or execute ./main)_

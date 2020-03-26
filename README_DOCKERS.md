@@ -26,6 +26,8 @@ docker stop db
 docker stop dyn
  
 ```
+Or execute `./test_services/stop_dockers_demo2.sh`
+
 _Wait for a minute while service DB is stopping, it stops more longer then other_
 ### Run full existing infrastructure again in the one commandline console:
 ```
@@ -37,6 +39,8 @@ docker start post
 docker start front
  
 ```
+Or execute `./test_services/run_dockers_demo2.sh`
+
 ### Updating image sources
 ```
 docker pull amazon/dynamodb-local
