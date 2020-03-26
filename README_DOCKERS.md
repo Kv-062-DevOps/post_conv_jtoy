@@ -11,7 +11,9 @@ docker run --name="front" --network=host dimeder13/frontend:latest
 # Visit web pages:
 
 http://127.0.0.1:8080
+
 http://127.0.0.1:8081
+
 http://127.0.0.1:8083/list
 
 # Stop all running containers:
@@ -42,16 +44,14 @@ docker pull vnikolayenko/db_service:latest_db_service
 ```
 # DockerHub web pages:
 
-https://hub.docker.com/r/dimeder13/frontend/tags
-_46 MB_
-https://hub.docker.com/r/nigth/post_conv_jtoy/tags
-_29 MB_
-https://hub.docker.com/r/nikitasadok/go-get-service/tags
-_28 MB_
-https://hub.docker.com/r/vnikolayenko/db_service/tags
-_349 MB  :latest_db_init_
-_353 MB  :latest_db_service_
-https://hub.docker.com/r/amazon/dynamodb-local/tags
-_227 MB_
+https://hub.docker.com/r/dimeder13/frontend/tags _46 MB_
+
+https://hub.docker.com/r/nigth/post_conv_jtoy/tags _29 MB_
+
+https://hub.docker.com/r/nikitasadok/go-get-service/tags _28 MB_
+
+https://hub.docker.com/r/vnikolayenko/db_service/tags (_349 MB_  :latest_db_init; _353 MB_  :latest_db_service)
+
+https://hub.docker.com/r/amazon/dynamodb-local/tags _227 MB_
 ___
 
