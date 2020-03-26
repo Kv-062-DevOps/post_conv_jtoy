@@ -12,8 +12,10 @@
 ### To start service from source code:
 At first set the environment variables POST_SRV_PORT and DB_SRV_LINK , for example:
 ```
-export POST_SRV_PORT = ":8082"
-export DB_SRV_LINK = "http://127.0.0.1:8083/add"
+POST_SRV_PORT=":8082"
+echo $POST_SRV_PORT
+DB_SRV_LINK="http://127.0.0.1:8083/add"
+echo $DB_SRV_LINK
 
 go run main.go 
 ```
