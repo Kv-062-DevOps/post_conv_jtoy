@@ -24,7 +24,7 @@ docker stop get
 docker stop db
 docker stop dyn
 ```
-_Wait for a minute while service DB stopping, it stops more longe then other_
+_Wait for a minute while service DB is stopping, it stops more longer then other_
 # Run full existing infrastructure again in the one commandline console:
 ```
 docker start dyn
