@@ -10,14 +10,14 @@
 *For testing without Frontend or/and Database, see **"test_services"** folder.*
 
 ### To start service from source code:
-At first set the environment variables POST_SRV_PORT and DB_SRV_LINK , for example:
+At first set the environment variables PORT and DBLINK , for example:
 ```
-POST_SRV_PORT=":8082"
-export POST_SRV_PORT=":8082"
-DB_SRV_LINK="http://127.0.0.1:8083/add"
-export DB_SRV_LINK="http://127.0.0.1:8083/add"
-echo $POST_SRV_PORT
-echo $DB_SRV_LINK
+PORT=":8082"
+export PORT=":8082"
+DBLINK="http://127.0.0.1:8083/add"
+export DBLINK="http://127.0.0.1:8083/add"
+echo $PORT
+echo $DBLINK
  
 go run main.go 
 ```

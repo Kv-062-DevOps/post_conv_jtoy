@@ -2,11 +2,11 @@
 ```
 docker run --name="dyn" --network=host amazon/dynamodb-local
 docker run --name="init" --network=host -e Db_url="http://127.0.0.1:8000" -e Region="local" vnikolayenko/db_service:latest_db_init
-docker run --name="db" --network=host -e Db_url="http://127.0.0.1:8000" -e Server_port="8083" -e Region="local" vnikolayenko/db_service:latest_db_service
+docker run --name="db" --network=host -e Server_port="8083" -e Db_url="http://127.0.0.1:8000" -e Region="local" vnikolayenko/db_service:latest_db_service
 
-docker run --name="post" --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" nigth/post_conv_jtoy
-docker run --name="get" --network=host -e ENDPOINT="http://127.0.0.1:8083/list" -e HOST_PORT=":8081" nikitasadok/go-get-service
-docker run --name="front" --network=host dimeder13/frontend:latest
+docker run --name="post" --network=host  -e PORT=":8082" -e DBLINK="http://127.0.0.1:8083/add" nigth/post_conv_jtoy
+docker run --name="get" --network=host -e HOST_PORT=":8081" -e ENDPOINT="http://127.0.0.1:8083/list"  nikitasadok/go-get-service
+docker run --name="front" --network=host -e URL_GET="http://127.0.0.1:8081" -e URL_POST="http://127.0.0.1:8082" dimeder13/frontend
  
 ```
 ### Visit web pages:

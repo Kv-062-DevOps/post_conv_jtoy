@@ -19,6 +19,9 @@ import (
 
 func main() {
 
+	fmt.Println("PORT =", os.Getenv("PORT"))
+	fmt.Println("DBLINK =", os.Getenv("DBLINK"))
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
@@ -35,7 +38,7 @@ func main() {
 		}
 
 		//resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
-		resp, err := http.Post(os.Getenv("DB_SRV_LINK"), "application/yaml", bytes.NewBuffer(converted))
+		resp, err := http.Post(os.Getenv("DBLINK"), "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			http.Error(w, "503 Service DB Unavailable at this link", 503)
 			fmt.Println(err)
@@ -49,6 +52,6 @@ func main() {
 	})
 
 	//http.ListenAndServe(":8082", nil)
-	http.ListenAndServe(os.Getenv("POST_SRV_PORT"), nil)
+	http.ListenAndServe(os.Getenv("PORT"), nil)
 
 }
