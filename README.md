@@ -30,26 +30,18 @@ Now you can post requests from Frontend and put them into Database.
 ### It is recommended to use image from DockerHub:
 https://hub.docker.com/r/nigth/post_conv_jtoy
 ```
-docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" nigth/post_conv_jtoy
+docker run --network=host -e PORT=":8082" -e DBLINK="http://127.0.0.1:8083/add" nigth/post_conv_jtoy
 ```
 To update your image:
 ```
 docker pull nigth/post_conv_jtoy
 ```
 Also you can create and use local image:
-1) Create local Docker image:
 ```
-docker build post_conv_jtoy
+docker build -t post .
+ 
+docker run --network=host -e PORT=":8082" -e DBLINK="http://127.0.0.1:8083/add"  post
 ```
-2) Wait for the message: 
-**Successfully built IMAGE_NAME**
-_(example: Successfully built    76db9a5645e9)_
-
-3) Start the Docker service:
-```
-docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" IMAGE_NAME
-```
-*(example: docker run --network=host -e DB_SRV_LINK="http://127.0.0.1:8083/add" -e POST_SRV_PORT=":8082" 76db9a5645e9)*
 ## Additional information
 
 ### Project DataBase Structure:
