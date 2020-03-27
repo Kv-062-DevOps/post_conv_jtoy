@@ -1,13 +1,5 @@
 FROM golang:1.14 AS builder
 
-EXPOSE 8082
-
-ENV GO111MODULE=on
-ARG PORT=":8082"
-ENV PORT="${PORT}"
-ARG DBLINK="http://127.0.0.1:8083/add"
-ENV DBLINK="${DBLINK}"
-
 WORKDIR /app
 COPY go.mod .
 COPY go.sum .
@@ -18,6 +10,12 @@ COPY . .
 RUN go build 
 
 FROM ubuntu
+
+ENV PORT=":8082"
+ENV DBLINK="http://127.0.0.1:8083/add"
+
+EXPOSE 8082
+
 WORKDIR /app
 COPY --from=builder /app/main .
 CMD ["./main"]
