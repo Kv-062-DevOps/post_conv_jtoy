@@ -7,7 +7,9 @@
 4. Print structure on the screen.
 5. Send YAML to DB service on port http :8083 path /add.
 
-*For testing without Frontend or/and Database, see **"test_services"** folder.*
+*For testing without Frontend/Backend/Database, see the **"test_services"** folder:*
+
+https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
 
 ### To start service from source code:
 At first set the environment variables POSTPORT, BACKPORT and BACKADDR, for example:
@@ -45,12 +47,13 @@ docker pull nigth/postconv
 Also you can create and use local image:
 ```
 docker build -t post .
-docker run --network=host -e -e BACKADDR="127.0.0.1" post
+docker run --network=host -e BACKADDR="127.0.0.1" post
     (or if you want to customize ports:)
-docker run --network=host -e POSTPORT=8082  -e BACKPORT=8083 -e -e BACKADDR="127.0.0.1" post
+docker run --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" post
  
 ```
 How to run the whole project with all services see **README_DOCKERS.md**:
+
 https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_DOCKERS.md
 
 ## Additional information
@@ -63,7 +66,8 @@ https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_DOCKERS.md
 * load
 * create
 * db
-For Minikube services add "**-srv**" (example "front-srv"), for deployments add "**-dep**" (example: "front-dep").
+
+For Minikube services add "**-srv**" (example "_front-srv_"), for deployments add "**-dep**" (example: "_front-dep_").
 
 ### Project DataBase Structure:
 - emp_id
@@ -76,6 +80,6 @@ For Minikube services add "**-srv**" (example "front-srv"), for deployments add 
 ### Project Ports Explication:
 + **Python frontend**: Listen on 8081 JSON from Go GET service;      Send JSON to 8082 Go POST service.
 + **Go POST service**: Listen on 8082 JSON from Python frontend;     Send YAML to 8083/add Python DB.
-+ **Python DB**:       Listen on 8083/add YAML from Go POST service; Send YAML to 8084 Go GET service.
++ **Python Backend**:  Listen on 8083/add YAML from Go POST service; Send YAML to 8084 Go GET service.
 + **Go GET service**:  Listen on 8084 YAML Python DB;                Send JSON to 8081 Python frontend. 
 ___
