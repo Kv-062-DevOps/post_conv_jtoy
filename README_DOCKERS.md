@@ -6,7 +6,7 @@ docker run --name="load" --network=host -e Db_url="http://127.0.0.1:8000" -e Reg
 docker run --name="back" --network=host -e Server_port=8083 -e Db_url="http://127.0.0.1:8000" -e Region="local" vnikolayenko/db-service:latest-db-service
 
 docker run --name="post" --network=host -e BACKADDR="127.0.0.1" nigth/postconv
-docker run --name="get" --network=host -e HOST_PORT=":8081" -e ENDPOINT="http://127.0.0.1:8083/list" nikitasadok/go-get-service
+docker run --name="get" --network=host -e HOST_PORT=8081 -e ENDPOINT="127.0.0.1:8083" nikitasadok/go-get-service
 docker run --name="front" --network=host -e URL_GET="http://127.0.0.1:8081" -e URL_POST="http://127.0.0.1:8082" dimeder13/frontend
  
 ```

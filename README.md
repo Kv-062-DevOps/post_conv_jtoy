@@ -12,7 +12,12 @@
 https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
 
 ### To start service from source code:
-At first set the environment variables POSTPORT, BACKPORT and BACKADDR, for example:
+At first set the environment variables:
+- POSTPORT - "Post port" - on which port this service will listen for JSON data from Frontend;
+- BACKPORT - "Backend port" - on which port the YAML converted data will be send to the Backend;
+- BACKADDR - "Backend address" - IP or DNS name of the Backend.
+
+For example:
 ```
 POSTPORT=8082
 export POSTPORT=8082
