@@ -41,9 +41,9 @@ Now you can post requests from Frontend and put them into Database.
 ### It is recommended to use image from DockerHub:
 https://hub.docker.com/r/nigth/postconv
 ```
-docker run --network=host -e BACKADDR="127.0.0.1" nigth/postconv
+docker run --rm --network=host -e BACKADDR="127.0.0.1" nigth/postconv
     (or if you want to customize ports:)
-docker run --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" nigth/postconv
+docker run --rm --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" nigth/postconv
 ```
 To update latest image:
 ```
@@ -51,10 +51,10 @@ docker pull nigth/postconv
 ```
 Also you can create and use local image:
 ```
-docker build -t post .
-docker run --network=host -e BACKADDR="127.0.0.1" post
+docker build -t postlocal .
+docker run --rm --network=host -e BACKADDR="127.0.0.1" postlocal
     (or if you want to customize ports:)
-docker run --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" post
+docker run --rm --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" postlocal
  
 ```
 How to run the whole project with all services see **README_DOCKERS.md**:
