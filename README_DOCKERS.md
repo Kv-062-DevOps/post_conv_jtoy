@@ -60,10 +60,11 @@ https://hub.docker.com/r/nigth/postconv/tags _Size 72 MB (Compressed size 29 MB)
 
 https://hub.docker.com/r/dimeder13/frontend/tags _Size 141 MB (Compressed size 46 MB)_
 
-https://hub.docker.com/r/amazon/dynamodb-local/tags _Size 611 MB (Compressed size 227 MB)_
-
 https://hub.docker.com/r/nikitasadok/go-get-service/tags _Size 71 MB (Compressed size 28 MB)_
 
-https://hub.docker.com/r/vnikolayenko/db-service/tags _Size: **latest-init-create** Size 159 MB (Compressed Size 48 MB); **latest-init-load** Size 159 MB (Compressed size 48 MB); **latest-db-service** Size 165 MB (Compressed size 50 MB)_
+https://hub.docker.com/r/amazon/dynamodb-local/tags _Size 611 MB (Compressed size 227 MB)_
+
+https://hub.docker.com/r/vnikolayenko/db-service/tags  _Sizes: **latest-init-create** Size 159 MB (Compressed Size 48 MB); 
+**latest-init-load** Size 159 MB (Compressed size 48 MB); **latest-db-service** Size 165 MB (Compressed size 50 MB)_
 ___
 
