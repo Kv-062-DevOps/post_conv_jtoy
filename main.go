@@ -19,8 +19,11 @@ import (
 
 func main() {
 
-	fmt.Println("PORT =", os.Getenv("PORT"))
-	fmt.Println("DBLINK =", os.Getenv("DBLINK"))
+	postport := "0.0.0.0:" + os.Getenv("POSTPORT")                                       //default is 8082
+	backlink := "http://" + os.Getenv("BACKADDR") + ":" + os.Getenv("BACKPORT") + "/add" //defaults are "127.0.0.1" and 8083
+
+	fmt.Println("POSTPORT =", postport) //default is "0.0.0.0:8082"
+	fmt.Println("BACKLINK =", backlink) //default is "http://127.0.0.1:8083/add"
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
@@ -38,20 +41,21 @@ func main() {
 		}
 
 		//resp, err := http.Post("http://127.0.0.1:8083/add", "application/yaml", bytes.NewBuffer(converted))
-		resp, err := http.Post(os.Getenv("DBLINK"), "application/yaml", bytes.NewBuffer(converted))
+		resp, err := http.Post(backlink, "application/yaml", bytes.NewBuffer(converted))
 		if err != nil {
 			http.Error(w, "503 Service DB Unavailable at this link", 503)
 			fmt.Println(err)
 			return
 		}
-
 		fmt.Println(resp.Status)
 		fmt.Fprintf(w, resp.Status)
 		fmt.Println(bytes.NewBuffer(converted))
+		fmt.Println("POSTPORT =", postport) //default is "0.0.0.0:8082"
+		fmt.Println("BACKLINK =", backlink) //default is "http://127.0.0.1:8083/add"
 
 	})
 
-	//http.ListenAndServe(":8082", nil)
-	http.ListenAndServe(os.Getenv("PORT"), nil)
+	//http.ListenAndServe("0.0.0.0:8082", nil)
+	http.ListenAndServe(postport, nil)
 
 }

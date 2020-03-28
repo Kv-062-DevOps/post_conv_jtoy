@@ -10,47 +10,68 @@
 *For testing without Frontend or/and Database, see **"test_services"** folder.*
 
 ### To start service from source code:
-At first set the environment variables PORT and DBLINK , for example:
+At first set the environment variables POSTPORT, BACKPORT and BACKADDR, for example:
 ```
-PORT=":8082"
-export PORT=":8082"
-DBLINK="http://127.0.0.1:8083/add"
-export DBLINK="http://127.0.0.1:8083/add"
-echo $PORT
-echo $DBLINK
+POSTPORT=8082
+export POSTPORT=8082
+BACKPORT=8083
+export BACKPORT=8083
+BACKADDR="127.0.0.1"
+export BACKADDR="127.0.0.1"
+echo $POSTPORT
+echo $BACKPORT
+echo $BACKADDR
  
 go run main.go 
+ 
 ```
-_(or execute ./main)_
+or execute ```./main```
 
 Now you can post requests from Frontend and put them into Database.
 
 ## Containerization
 
 ### It is recommended to use image from DockerHub:
-https://hub.docker.com/r/nigth/post_conv_jtoy
+https://hub.docker.com/r/nigth/postconv
 ```
-docker run --network=host -e PORT=":8082" -e DBLINK="http://127.0.0.1:8083/add" nigth/post_conv_jtoy
+docker run --network=host -e BACKADDR="127.0.0.1" nigth/postconv
+    (or if you want to customize ports:)
+docker run --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="127.0.0.1" nigth/postconv
 ```
-To update your image:
+To update latest image:
 ```
-docker pull nigth/post_conv_jtoy
+docker pull nigth/postconv
 ```
 Also you can create and use local image:
 ```
 docker build -t post .
+docker run --network=host -e -e BACKADDR="127.0.0.1" post
+    (or if you want to customize ports:)
+docker run --network=host -e POSTPORT=8082  -e BACKPORT=8083 -e -e BACKADDR="127.0.0.1" post
  
-docker run --network=host -e PORT=":8082" -e DBLINK="http://127.0.0.1:8083/add"  post
 ```
+How to run the whole project with all services see **README_DOCKERS.md**:
+https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_DOCKERS.md
+
 ## Additional information
 
+### Namespace for the Kubernetes:
+* front
+* get
+* post
+* back
+* load
+* create
+* db
+For Minikube services add "**-srv**" (example "front-srv"), for deployments add "**-dep**" (example: "front-dep").
+
 ### Project DataBase Structure:
-- emp_id;
-- first_name;
-- second_name;
-- types;
-- experience;
-- default_salary;
+- emp_id
+- first_name
+- second_name
+- types
+- experience
+- default_salary
 
 ### Project Ports Explication:
 + **Python frontend**: Listen on 8081 JSON from Go GET service;      Send JSON to 8082 Go POST service.

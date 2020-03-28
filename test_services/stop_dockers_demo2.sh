@@ -1,13 +1,14 @@
 #!/bin/bash
 
-docker ps -s
+docker ps
 
 docker stop front
 docker stop post
-docker stop init
 docker stop get
+docker stop back
 docker stop db
-docker stop dyn
+docker stop load
+docker stop create
 
 docker ps
 

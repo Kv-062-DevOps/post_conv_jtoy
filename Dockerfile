@@ -11,10 +11,11 @@ RUN go build
 
 FROM ubuntu
 
-ENV PORT=":8082"
-ENV DBLINK="http://127.0.0.1:8083/add"
+ENV POSTPORT=8082
+ENV BACKPORT=8083
+ENV BACKADDR="127.0.0.1"
 
-EXPOSE 8082
+EXPOSE ${POSTPORT}
 
 WORKDIR /app
 COPY --from=builder /app/main .
