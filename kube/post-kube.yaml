@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: post-conf
 data:
-  POSTPORT: 8082
-  BACKPORT: 8083
+  POSTPORT: "8082"
+  BACKPORT: "8083"
   BACKADDR: "back.default.svc.cluster.local"
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,9 +37,7 @@ spec:
           requests:
             memory: "64Mi"
             cpu: "100m"
-
-        name: post
-
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,6 +45,7 @@ metadata:
   labels:
     app: post
 spec:
+  type: NodePort
   ports:
   - port: 8082
     protocol: TCP
