@@ -4,7 +4,7 @@ metadata:
   name: get-conf
 data:
   HOST_PORT: "8081"
-  ENDPOINT: "back:8083"
+  ENDPOINT: "back-srv:8083"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,7 +40,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: get
+  name: get-srv
   labels:
     app: get
 spec:

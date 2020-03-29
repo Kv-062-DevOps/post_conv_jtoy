@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: front-conf
 data:
-  URL_GET: "http://get:8081"
-  URL_POST: "http://post:8082"
+  URL_GET: "http://get-srv:8081"
+  URL_POST: "http://post-srv:8082"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,7 +40,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: front
+  name: front-srv
   labels:
     app: front
 spec:
