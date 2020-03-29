@@ -1,6 +1,56 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: post
+  name: post-conf
 data:
+  POSTPORT: 8082
+  BACKPORT: 8083
   BACKADDR: "back.default.svc.cluster.local"
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post
+  labels:
+    app: post
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+      name: post
+      labels:
+        app: post
+    spec:
+      containers:
+      - name: post
+        image: nigth/postconv
+        envFrom:
+        - configMapRef:
+            name: post-conf
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+
+        name: post
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: post
+  labels:
+    app: post
+spec:
+  ports:
+  - port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: front
+
