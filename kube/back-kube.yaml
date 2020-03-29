@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: back-conf
+  namespace: demo
+data:
+  Region: "local"
+  Server_port: "8083"
+  Db_url: "http://db-srv:8000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  namespace: demo
+  labels:
+    app: back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      name: back
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        image: vnikolayenko/db-service:latest-db-service
+        envFrom:
+        - configMapRef:
+            name: back-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-srv
+  namespace: demo
+  labels:
+    app: back
+spec:
+  type: NodePort
+  ports:
+  - port: 8083
+    protocol: TCP
+    targetPort: 8083
+  selector:
+    app: back
+
