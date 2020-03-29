@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: post-conf
+  namespace: demo
 data:
   POSTPORT: "8082"
   BACKPORT: "8083"
@@ -11,6 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: post
+  namespace: demo
   labels:
     app: post
 spec:
@@ -30,18 +32,12 @@ spec:
         envFrom:
         - configMapRef:
             name: post-conf
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "200m"
-          requests:
-            memory: "64Mi"
-            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: post-srv
+  namespace: demo
   labels:
     app: post
 spec:
@@ -51,5 +47,5 @@ spec:
     protocol: TCP
     targetPort: 8082
   selector:
-    app: front
+    app: post
 

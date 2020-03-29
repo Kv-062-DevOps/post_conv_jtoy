@@ -2,6 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: front-conf
+  namespace: demo
 data:
   URL_GET: "http://get-srv:8081"
   URL_POST: "http://post-srv:8082"
@@ -10,6 +11,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: front
+  namespace: demo
   labels:
     app: front
 spec:
@@ -29,18 +31,12 @@ spec:
         envFrom:
         - configMapRef:
             name: front-conf
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "200m"
-          requests:
-            memory: "64Mi"
-            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: front-srv
+  namespace: demo
   labels:
     app: front
 spec:
