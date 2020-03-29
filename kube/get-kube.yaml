@@ -4,7 +4,7 @@ metadata:
   name: get-conf
 data:
   HOST_PORT: "8081"
-  ENDPOINT: "back-service:8083"
+  ENDPOINT: "back:8083"
 ---
 apiVersion: apps/v1
 kind: Deployment
