@@ -5,18 +5,27 @@ Download repository:
 
 YAML configuration files for Kubernetes contain in the `kube` directory.  
 
-**Important notice**. There are no separate files to create DB and load data.
-All initiations applied in one Backend config (`back-kube.yaml`), section _**initContainers**_.
-
 Open the folder **`post_conv_jtoy`** in commandline console and execute:
 ```
 minikube start
 kubectl apply -f kube
-kubectl config set-context --current --namespace=demo
-minikube service front-srv -n demo --url
-  
+kubectl config set-context --current --namespace=demo  
 ```
-Open in your web browser resulted link after last command (for example, <http://172.17.0.2:30808>).  
+To initialize Database you can try two ways. Using three commands step-by-step:
+```
+kubectl apply -f kube-init-separate\create-kube.yaml
+kubectl apply -f kube-init-separate\load-kube.yaml
+kubectl apply -f kube-init-separate\back-only-kube.yaml
+```
+or next one:
+    `kubectl apply -f kube-back-allinone`
+
+**Important notice**. In last case there are no separate files to create DB and load data. 
+All initiations applied in one Backend config (`back-kube.yaml`), section _**initContainers**_.
+
+After that open in your web browser link from command
+`minikube service front-srv -n demo --url`
+(for example, <http://172.17.0.2:30808>).  
 
 ---
 To visit a Kubernetes WEB dashboard, use command **`minikube dashboard`**

@@ -15,10 +15,19 @@ In your commanline console open the `post_conv_jtoy` directory and execute:
 ```
 minikube start
 kubectl apply -f kube
-minikube service front-srv -n demo --url 
 ```
 _(where the "**kube**" is a directory with Kubernetes YAML files)_  
-Open the link from last command in your web browser (for example <http://172.17.0.2:30808>)
+To initialize Database you can try two ways. Only one command:
+    `kubectl apply -f kube-back-allinone`
+or three commands step-by-step:
+```
+kubectl apply -f kube-init-separate\create-kube.yaml
+kubectl apply -f kube-init-separate\load-kube.yaml
+kubectl apply -f kube-init-separate\back-only-kube.yaml
+```
+Now open the link from command 
+`minikube service front-srv -n demo --url`
+in your web browser (for example <http://172.17.0.2:30808>)
 
 More details about running project in the Minikube see **README_MINIKUBE.md**:  
 https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_MINIKUBE.md
