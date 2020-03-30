@@ -11,22 +11,18 @@ https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
 ## Containerization
 
 ### How to run the Demo project in the Minikube environment
-1. In your commanline console open the `post_conv_jtoy` directory and execute:
+In your commanline console open the `post_conv_jtoy` directory and execute:
 ```
 minikube start
 kubectl apply -f kube/demo-namespace.yaml
+kubectl apply -f kube/db-kube.yaml
 kubectl apply -f kube
 ```
 _(where the "**kube**" is a directory with Kubernetes YAML files)_  
-2. To initialize Database you can try two ways. Only one command:  
-    `kubectl apply -f kube-back-allinone`  
-or three commands step-by-step:
-```
-kubectl apply -f kube-init-separate/create-kube.yaml
-kubectl apply -f kube-init-separate/load-kube.yaml
-kubectl apply -f kube-init-separate/back-only-kube.yaml
-```
-3. Now open the link from command  
+If something wrong because it started in random order - just try again  
+`kubectl apply -f kube`
+
+Now open the link from command  
  `minikube service front-srv -n demo --url`
 in your web browser (for example <http://172.17.0.2:30808>)
 
