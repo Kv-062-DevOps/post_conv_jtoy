@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: load-conf
+  namespace: demo
+data:
+  Region: "local"
+  Db_url: "http://db-srv:8000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: load
+  namespace: demo
+  labels:
+    app: load
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: load
+  template:
+    metadata:
+      name: load
+      labels:
+        app: load
+    spec:
+      containers:
+      - name: load
+        image: vnikolayenko/db-service:latest-init-load
+        envFrom:
+        - configMapRef:
+            name: load-conf

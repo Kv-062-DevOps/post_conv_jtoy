@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-conf
+  namespace: demo
+data:
+  Region: "local"
+  Db_url: "http://db-srv:8000"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: create
+  namespace: demo
+  labels:
+    app: create
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: create
+  template:
+    metadata:
+      name: create
+      labels:
+        app: create
+    spec:
+      containers:
+      - name: create
+        image: vnikolayenko/db-service:latest-init-create
+        envFrom:
+        - configMapRef:
+            name: create-conf
