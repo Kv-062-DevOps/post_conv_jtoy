@@ -17,7 +17,7 @@ kubectl apply -f kube-init-separate\create-kube.yaml
 kubectl apply -f kube-init-separate\load-kube.yaml
 kubectl apply -f kube-init-separate\back-only-kube.yaml
 ```
-or next one:
+or next one:  
     `kubectl apply -f kube-back-allinone`
 
 **Important notice**. In last case there are no separate files to create DB and load data. 

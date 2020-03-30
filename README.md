@@ -17,8 +17,8 @@ minikube start
 kubectl apply -f kube
 ```
 _(where the "**kube**" is a directory with Kubernetes YAML files)_  
-To initialize Database you can try two ways. Only one command:
-    `kubectl apply -f kube-back-allinone`
+To initialize Database you can try two ways. Only one command:  
+    `kubectl apply -f kube-back-allinone`  
 or three commands step-by-step:
 ```
 kubectl apply -f kube-init-separate\create-kube.yaml
