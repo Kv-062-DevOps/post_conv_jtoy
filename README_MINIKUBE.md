@@ -9,6 +9,7 @@ Do next three steps:
 1. Open the folder **`post_conv_jtoy`** in commandline console and execute:
 ```
 minikube start
+kubectl apply -f kube\demo-namespace.yaml
 kubectl apply -f kube
 ```
 2. To initialize Database you can try two ways. Using three commands step-by-step:

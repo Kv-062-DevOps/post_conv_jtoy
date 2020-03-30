@@ -14,6 +14,7 @@ https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
 1. In your commanline console open the `post_conv_jtoy` directory and execute:
 ```
 minikube start
+kubectl apply -f kube\demo-namespace.yaml
 kubectl apply -f kube
 ```
 _(where the "**kube**" is a directory with Kubernetes YAML files)_  
