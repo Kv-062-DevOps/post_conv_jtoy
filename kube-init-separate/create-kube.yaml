@@ -28,6 +28,7 @@ spec:
       containers:
       - name: create
         image: vnikolayenko/db-service:latest-init-create
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: create-conf

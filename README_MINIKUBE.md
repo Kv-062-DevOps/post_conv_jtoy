@@ -1,17 +1,17 @@
 ## How to start the Demo project with all services in the Minikube
 
-Download repository:
+Download repository if you don't have:
 `git clone https://github.com/Kv-062-DevOps/post_conv_jtoy.git`
 
 YAML configuration files for Kubernetes contain in the `kube` directory.  
 
-Open the folder **`post_conv_jtoy`** in commandline console and execute:
+Do next three steps:  
+1. Open the folder **`post_conv_jtoy`** in commandline console and execute:
 ```
 minikube start
 kubectl apply -f kube
-kubectl config set-context --current --namespace=demo  
 ```
-To initialize Database you can try two ways. Using three commands step-by-step:
+2. To initialize Database you can try two ways. Using three commands step-by-step:
 ```
 kubectl apply -f kube-init-separate\create-kube.yaml
 kubectl apply -f kube-init-separate\load-kube.yaml
@@ -23,7 +23,7 @@ or next one:
 **Important notice**. In last case there are no separate files to create DB and load data. 
 All initiations applied in one Backend config (`back-kube.yaml`), section _**initContainers**_.
 
-After that open in your web browser link from command
+3. After that open in your web browser link from command
 `minikube service front-srv -n demo --url`
 (for example, <http://172.17.0.2:30808>).  
 
@@ -44,6 +44,10 @@ kubectl config set-context --current --namespace=demo
 
 kubectl delete deployments back get post db front
 kubectl delete services back-srv get-srv post-srv db-srv front-srv 
+
+kubectl get pods
+kubectl get services
+kubectl get services
  
 kubectl config set-context --current --namespace=default
  

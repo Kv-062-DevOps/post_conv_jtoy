@@ -28,6 +28,7 @@ spec:
       containers:
       - name: load
         image: vnikolayenko/db-service:latest-init-load
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: load-conf

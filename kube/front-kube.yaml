@@ -28,6 +28,7 @@ spec:
       containers:
       - name: front
         image: dimeder13/frontend
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: front-conf

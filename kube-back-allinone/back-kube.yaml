@@ -38,17 +38,20 @@ spec:
       containers:
       - name: back
         image: vnikolayenko/db-service:latest-db-service
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: back-conf
       initContainers:
       - name: init-create
         image: vnikolayenko/db-service:latest-init-create
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: init-conf
       - name: init-load
         image: vnikolayenko/db-service:latest-init-load
+        imagePullPolicy: IfNotPresent
         envFrom:
         - configMapRef:
             name: init-conf
