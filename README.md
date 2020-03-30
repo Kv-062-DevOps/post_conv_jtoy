@@ -1,5 +1,5 @@
 # POST Data Converting Service from JSON to YAML
-## How it works:
+### How it works:
 1. Listen requests from frontend on port http :8082.
 2. Decode body from JSON.
 3. Encode data into YAML.
@@ -7,30 +7,26 @@
 5. Send YAML to DB service on port http :8083 path /add.  
 *For testing without Frontend/Backend/Database, see the **"test_services"** folder:*  
 https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
-### To start service from source code:
-At first set the environment variables:  
-- POSTPORT - "Post port" - on which port this service will listen for JSON data from Frontend;
-- BACKPORT - "Backend port" - on which port the YAML converted data will be send to the Backend;
-- BACKADDR - "Backend address" - IP or DNS name of the Backend **without** `http://` and path (`/add`or `/list`).  
 
-For example:
-```
-POSTPORT=8082
-export POSTPORT=8082
-BACKPORT=8083
-export BACKPORT=8083
-BACKADDR="127.0.0.1"
-export BACKADDR="127.0.0.1"
-echo $POSTPORT
-echo $BACKPORT
-echo $BACKADDR
- 
-go run main.go 
-```
-_(or execute `./main`)_  
-Now you can post requests from Frontend and put them into Database.
 ## Containerization
-### It is recommended to use image from DockerHub:
+
+### How to run the Demo project in the Minikube environment
+In your commanline console open the `post_conv_jtoy` directory and execute:
+```
+minikube start
+kubectl apply -f kube
+minikube service front-srv -n demo --url 
+```
+_(where the "**kube** is a directory with Kubernetes YAML files)_  
+Open the link from last command in your web browser (for example <http://172.17.0.2:30808>)
+
+```
+
+Details about running project in the Minikube see **README_MINIKUBE.md**:  
+https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_MINIKUBE.md
+
+### Run application using Docker:
+It is recommended to use image from DockerHub:
 https://hub.docker.com/r/nigth/postconv
 ```
 docker run --rm --network=host -e BACKADDR="127.0.0.1" nigth/postconv
@@ -54,6 +50,30 @@ docker run --rm --network=host -e POSTPORT=8082 -e BACKPORT=8083 -e BACKADDR="12
 ```
 How to run the whole project with all services see **README_DOCKERS.md**:  
 https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_DOCKERS.md
+
+### To start service from source code:
+At first set the environment variables:  
+- POSTPORT - "Post port" - on which port this service will listen for JSON data from Frontend;
+- BACKPORT - "Backend port" - on which port the YAML converted data will be send to the Backend;
+- BACKADDR - "Backend address" - IP or DNS name of the Backend **without** `http://` and path (`/add`or `/list`).  
+
+For example:
+```
+POSTPORT=8082
+export POSTPORT=8082
+BACKPORT=8083
+export BACKPORT=8083
+BACKADDR="127.0.0.1"
+export BACKADDR="127.0.0.1"
+echo $POSTPORT
+echo $BACKPORT
+echo $BACKADDR
+ 
+go run main.go 
+```
+_(or execute `./main`)_  
+Now you can post requests from Frontend and put them into Database.
+
 ## Additional information
 ### Namespace for the Kubernetes:
 * front
@@ -64,6 +84,7 @@ https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_DOCKERS.md
 * create
 * db  
 For Minikube services add "**-srv**" (example "_front-srv_"), for deployments add "**-dep**" (example: "_front-dep_").
+
 ### Project DataBase Structure:
 - emp_id
 - first_name
