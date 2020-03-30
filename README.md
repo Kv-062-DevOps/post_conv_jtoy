@@ -14,7 +14,7 @@ https://github.com/Kv-062-DevOps/post_conv_jtoy/tree/master/test_services
 1. In your commanline console open the `post_conv_jtoy` directory and execute:
 ```
 minikube start
-kubectl apply -f kube\demo-namespace.yaml
+kubectl apply -f kube/demo-namespace.yaml
 kubectl apply -f kube
 ```
 _(where the "**kube**" is a directory with Kubernetes YAML files)_  
@@ -22,9 +22,9 @@ _(where the "**kube**" is a directory with Kubernetes YAML files)_
     `kubectl apply -f kube-back-allinone`  
 or three commands step-by-step:
 ```
-kubectl apply -f kube-init-separate\create-kube.yaml
-kubectl apply -f kube-init-separate\load-kube.yaml
-kubectl apply -f kube-init-separate\back-only-kube.yaml
+kubectl apply -f kube-init-separate/create-kube.yaml
+kubectl apply -f kube-init-separate/load-kube.yaml
+kubectl apply -f kube-init-separate/back-only-kube.yaml
 ```
 3. Now open the link from command  
  `minikube service front-srv -n demo --url`
