@@ -17,12 +17,10 @@ minikube start
 kubectl apply -f kube
 minikube service front-srv -n demo --url 
 ```
-_(where the "**kube** is a directory with Kubernetes YAML files)_  
+_(where the "**kube**" is a directory with Kubernetes YAML files)_  
 Open the link from last command in your web browser (for example <http://172.17.0.2:30808>)
 
-```
-
-Details about running project in the Minikube see **README_MINIKUBE.md**:  
+More details about running project in the Minikube see **README_MINIKUBE.md**:  
 https://github.com/Kv-062-DevOps/post_conv_jtoy/blob/master/README_MINIKUBE.md
 
 ### Run application using Docker:
