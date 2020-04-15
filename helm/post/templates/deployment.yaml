@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "postchart.fullname" . }}
+  name: {{ include "post.fullname" . }}
   labels:
-    {{- include "postchart.labels" . | nindent 4 }}
+    {{- include "post.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "postchart.selectorLabels" . | nindent 6 }}
+      {{- include "post.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "postchart.selectorLabels" . | nindent 8 }}
+        {{- include "post.selectorLabels" . | nindent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ include "postchart.serviceAccountName" . }}
+      serviceAccountName: {{ include "post.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
