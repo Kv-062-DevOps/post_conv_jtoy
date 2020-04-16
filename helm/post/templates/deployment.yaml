@@ -20,11 +20,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: "POSTPORT"
-              value: {{ .Values.POSTPORT }}
+              value: "{{ .Values.POSTPORT }}"
             - name: "BACKPORT"
-              value: {{ .Values.BACKPORT }} 
+              value: "{{ .Values.BACKPORT }}"
             - name: "BACKADDR"
-              value: {{ .Values.BACKADDR }} 
+              value: "{{ .Values.BACKADDR }}"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
