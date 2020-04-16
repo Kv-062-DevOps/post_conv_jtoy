@@ -9,7 +9,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8082
   targetPort: 8082
 
@@ -28,4 +28,3 @@ affinity: {}
 POSTPORT: "8082"
 BACKPORT: "8083"
 BACKADDR: "back-srv"
-
