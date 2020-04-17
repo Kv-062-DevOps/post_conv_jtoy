@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nigth/postconv
+  repository: http://074368059797.dkr.ecr.eu-central-1.amazonaws.com/post
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
