@@ -41,7 +41,7 @@ func MakeRequest() {
 		return
 	}
 
-	resp, err := http.Post("http://127.0.0.1:8082", "application/json", bytes.NewBuffer(bytesRepresentation))
+	resp, err := http.Post("http://127.0.0.1:8082/a", "application/json", bytes.NewBuffer(bytesRepresentation))
 	if err != nil {
 		fmt.Println("Error 503 Service POST Converter Unavailable at port 8082")
 		fmt.Println(err)
