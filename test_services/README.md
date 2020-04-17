@@ -6,7 +6,7 @@
 1. Generate data array.
 2. Print data on the screen.
 3. Encode data array into JSON.
-4. Send JSON to MAIN service on port http :8082
+4. Send JSON to MAIN service on port http :8082/a
 ### Additional service for test getting YAML (such as Python DB service works:
 1. Listen requests on port http :8083 path /add
 2. Decode body from YAML.
