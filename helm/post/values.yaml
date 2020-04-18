@@ -5,9 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: http://074368059797.dkr.ecr.eu-central-1.amazonaws.com/post
+  repository: 074368059797.dkr.ecr.eu-central-1.amazonaws.com/post
+# repository: 893769753495.dkr.ecr.eu-central-1.amazonaws.com/nigth
   tag: latest
   pullPolicy: IfNotPresent
+# pullPolicy: Always
 
 service:
   type: ClusterIP

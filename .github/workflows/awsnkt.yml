@@ -25,11 +25,11 @@
 
 on: [push]
 
-name: Deploy to Group Amazon ECS
+name: Deploy to Kv-062-DevOps Group Amazon ECS
 
 jobs:
   deploy:
-    name: Deploy Post service to Group ECR
+    name: Deploy Post service to Kv-062-DevOps ECR
     runs-on: ubuntu-latest
 
     steps:
@@ -53,6 +53,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: post
         IMAGE_TAG: latest
+#       IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can

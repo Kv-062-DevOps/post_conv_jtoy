@@ -1,2 +1,5 @@
 .vscode/
 *.swp
+main
+test_services/getyamlsrv
+test_services/sendjsonsrv
