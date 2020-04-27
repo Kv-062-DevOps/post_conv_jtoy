@@ -30,7 +30,8 @@ name: Deploy Post image to My Own Amazon ECS
 jobs:
   deploy:
     name: Deploy Post service to My ECR
-    runs-on: ubuntu-latest
+#   runs-on: ubuntu-latest # with Latest got errors in AWS scanner and Kubernetes cluster UnsupportedImageError: The operating system 'ubuntu' version '20.04' is not supported.
+    runs-on: ubuntu-18.04
 
     steps:
     - name: Checkout
