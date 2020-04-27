@@ -12,6 +12,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"log/syslog"
 	"net/http"
 
 	"github.com/Kv-062-DevOps/post_conv_jtoy/handlers"
@@ -19,6 +20,13 @@ import (
 
 func main() {
 	MakeRequest()
+	syslogger, err := syslog.New(syslog.LOG_INFO, "syslog_test")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	log.SetOutput(syslogger)
+	log.Println("service sendjsonsrv started")
 }
 
 func MakeRequest() {
