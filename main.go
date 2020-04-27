@@ -12,7 +12,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"log/syslog"
 	"net/http"
 	"os"
 	"time"
@@ -25,11 +24,11 @@ import (
 
 func main() {
 
-	syslogger, err := syslog.New(syslog.LOG_INFO, "syslog_post")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	log.SetOutput(syslogger)
+	// syslogger, err := syslog.New(syslog.LOG_INFO, "syslog_post")
+	// if err != nil {
+	//	log.Fatalln(err)
+	// }
+	// log.SetOutput(syslogger)
 
 	log.Println("service post started")
 
