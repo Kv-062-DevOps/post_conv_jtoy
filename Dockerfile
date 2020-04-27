@@ -9,7 +9,7 @@ COPY . .
 
 RUN go build main.go
 
-FROM ubuntu
+FROM ubuntu:18.04
 
 ENV POSTPORT=8082
 ENV BACKPORT=8083
