@@ -17,7 +17,6 @@ import (
 	"time"
 
 	"github.com/Kv-062-DevOps/monitoring/metrics"
-	//"github.com/Kv-062-DevOps/monitoring/exporter"
 
 	"github.com/ghodss/yaml"
 )
@@ -32,8 +31,8 @@ func main() {
 
 	log.Println("service post started")
 
-	metrics.Count()
-	metrics.Hist()
+	// call RegMetric() and Output() funcs from metrics module
+	metrics.RegMetrics()
 	metrics.Output()
 
 	postport := "0.0.0.0:" + os.Getenv("POSTPORT")                                       //default is 8082
@@ -45,14 +44,16 @@ func main() {
 
 		log.Println("http handler in service post started")
 
+		// gather method, time, endpoint for Prometheus
 		start := time.Now()
-		status := ""
-		endpoint := r.URL.Path
 		serName := "post-srv"
 		method := r.Method
+		endpoint := r.URL.Path
+		status := ""
 
 		defer func() {
-			metrics.HistogramVec.WithLabelValues(serName, method, endpoint, status).Observe(time.Since(start).Seconds())
+			metrics.CounterVec.WithLabelValues(serName, method, endpoint, status).Inc()
+			metrics.HistogramVec.WithLabelValues(serName, endpoint).Observe(time.Since(start).Seconds())
 		}()
 
 		body, err := ioutil.ReadAll(r.Body)
@@ -83,6 +84,7 @@ func main() {
 		}
 		log.Println("yaml sent to backend from service post")
 
+		// gather status for Prometheus
 		status = resp.Status
 
 		fmt.Println(resp.Status)
